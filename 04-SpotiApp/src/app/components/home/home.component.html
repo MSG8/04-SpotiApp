@@ -1,0 +1,16 @@
+<table class="table">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Capital</th>
+    </tr>
+  </thead>
+  <tbody class="text-white">
+    <tr  *ngFor="let pais of paises; let indice=index">
+      <th scope="col">{{indice}}</th>
+      <th scope="col">{{pais.name}}</th>
+      <th scope="col">{{pais.capital}}</th>
+    </tr>
+  </tbody>
+</table>
