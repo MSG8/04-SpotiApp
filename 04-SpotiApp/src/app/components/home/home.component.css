@@ -1,0 +1,7 @@
+.card{
+  flex: 0 1 auto !important;
+  width: 200px;
+}
+.badge{
+  margin: 0 !important;
+}

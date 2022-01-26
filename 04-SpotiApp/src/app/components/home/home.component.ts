@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {SpotifyService} from "../../services/spotify.service";
 
 @Component({
   selector: 'app-home',
@@ -7,15 +8,13 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  paises!:any[]
-  constructor(private http: HttpClient)
+  nuevasCanciones:any[] = [];
+  constructor(private http: HttpClient,private spotifyService: SpotifyService)
   {
-    this.http.get("https://restcountries.com/v2/lang/es",)
-      .subscribe( (resp: any) =>
-      {
-        this.paises = resp;
-        console.log(this.paises)
-      })
+    spotifyService.getNewReleases().subscribe(data => {
+      console.log(data.albums.items)
+      this.nuevasCanciones = data.albums.items;
+    });
 
   }
 

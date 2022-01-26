@@ -7,11 +7,6 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 })
 export class SpotifyService {
 
-  headers:HttpHeaders = new HttpHeaders({
-    'Authorization':'Bearer BQAJ10iHS6vEO07zCUMYrc_bJQaYiuCltyVkwAdKAx0RcFqOzuyAaWz6tBPNX8lICqABAW18fs_DId0bsJM'
-  });
-
-
   constructor(private http: HttpClient)
   {
     this.getNewReleases();
@@ -19,9 +14,19 @@ export class SpotifyService {
 
   getNewReleases():Observable<any>
   {
-    this.http.get("https://api.spotify.com/v1/browse/new-releases",{headers})
-      .subscribe(data => {
-        console.log(data);
-      });
+   const headers = new HttpHeaders({
+    'Authorization':'Bearer BQBg0ZQyUlGHXgY0gNv2U7CeATzcnr4-oJ06O-h6zNCA949IePsTv33itgS0tZV9VcDvJD2bXmN6rqL4naI'
+  });
+
+   return this.http.get("https://api.spotify.com/v1/browse/new-releases",{headers})
+
+  }
+
+  getArtist(busqueda:string):Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization':'Bearer BQBg0ZQyUlGHXgY0gNv2U7CeATzcnr4-oJ06O-h6zNCA949IePsTv33itgS0tZV9VcDvJD2bXmN6rqL4naI'
+    });
+
+    return this.http.get(`https://api.spotify.com/v1/search?q=${busqueda}$type=artist&limit=15`,{headers})
   }
 }
