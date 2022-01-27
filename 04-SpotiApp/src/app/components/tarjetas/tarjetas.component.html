@@ -1,5 +1,5 @@
 <div class="card-group">
-  <div class="card col-4" *ngFor="let item of items">
+  <div class="card col-4 puntero mx-3 my-2"  *ngFor="let item of items"  (click)="verArtista(item)" >
     <img src="{{item.images | noImage }}" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">{{item.name}}</h5>
