@@ -3,15 +3,5 @@
     <input #termino type="text" (keyup)="buscar(termino.value)" class="form-control" placeholder="Buscar artista..." />
   </div>
 </div>
-
-<div class="card-group">
-  <div class="card col-4" *ngFor="let artista of artistas">
-    <img [src]="artista.images | noImage" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">{{artista.name}}</h5>
-<!--      <p class="card-text"> <span *ngFor="let artista of cancion.artists" class="badge bg-success">{{artista.name}}</span></p>-->
-<!--      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->
-<!--      <p class="card-text"><small class="text-muted">{{cancion.release_date}}</small></p>-->
-    </div>
-  </div>
-</div>
+<app-loading *ngIf="loading"></app-loading>
+<app-tarjetas  [items]= "artistas"></app-tarjetas>

@@ -12,7 +12,7 @@ export class SpotifyService {
     this.getNewReleases();
   }
 
-  token: string = "BQA_v2ilFuwC71IDlHT68sgrPpdZXZOksih0Fjgz_cVoRO_oJbtXgGMBkAiICUs9KbQlox213dahOEbua74";
+  token: string = "BQDayaHB-mxKHBE_6KqSCEI11YZFg2d1huFhqSIdjf062NZ3XNXWDm_7sbgUa536zfUisHeMIGc_xnyHjoQ";
 
   getNewReleases()
   {
