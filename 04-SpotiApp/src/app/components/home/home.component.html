@@ -1,6 +1,6 @@
 <div class="card-group">
     <div class="card col-4" *ngFor="let cancion of nuevasCanciones">
-      <img [src]="cancion.images[1].url" class="card-img-top" alt="...">
+      <img src="{{cancion.images | noImage }}" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">{{cancion.name}}</h5>
         <p class="card-text"> <span *ngFor="let artista of cancion.artists" class="badge bg-success">{{artista.name}}</span></p>
