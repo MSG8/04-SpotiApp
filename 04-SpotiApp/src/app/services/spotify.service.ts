@@ -1,19 +1,41 @@
 import { Injectable } from '@angular/core';
 import {map, Observable} from "rxjs";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders,} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SpotifyService {
 
+  token: string = '';
+
   constructor(private http: HttpClient)
   {
-    this.getNewReleases();
+    this.getNewtoken();
   }
 
-  token: string = "BQC2cFFoPfWd5hoKnabAioFkekYqFk7Ywdxl3QwuzYGQHQzN0_C-F64w2tWwVSchcLHwkSws1G-xihhMjos";
+  getNewtoken():boolean{
+    console.log("hola")
+    let error:boolean=false;
+    const BODY = new URLSearchParams();
+    BODY.set('grant_type','client_credentials')
+    BODY.set('client_id','3db4618e13964db19ef70097d113b732')
+    BODY.set('client_secret','cec6a28fdfac44be85aaa8be16614a73')
 
+    const headers = new  HttpHeaders(
+      {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    );
+
+
+    this.http.post('https://accounts.spotify.com/api/token', BODY,{headers}).subscribe((data:any) => {
+      this.token = data.access_token;
+    },(data:any) => {
+      error = true;
+    })
+    return  error;
+}
 
   getQuery(ruta:string):Observable<any>
   {
