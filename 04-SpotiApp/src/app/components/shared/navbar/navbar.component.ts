@@ -15,5 +15,6 @@ export class NavbarComponent implements OnInit {
 
   newToken(){
     this.spotifyService.getNewtoken();
+    console.log(this.spotifyService.token)
   }
 }

@@ -11,12 +11,9 @@ export class SpotifyService {
 
   constructor(private http: HttpClient)
   {
-    this.getNewtoken();
   }
 
-  getNewtoken():boolean{
-    console.log("hola")
-    let error:boolean=false;
+  async getNewtoken(){
     const BODY = new URLSearchParams();
     BODY.set('grant_type','client_credentials')
     BODY.set('client_id','3db4618e13964db19ef70097d113b732')
@@ -27,15 +24,11 @@ export class SpotifyService {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     );
-
-
-    this.http.post('https://accounts.spotify.com/api/token', BODY,{headers}).subscribe((data:any) => {
-      this.token = data.access_token;
-    },(data:any) => {
-      error = true;
-    })
-    return  error;
+    return this.http.post('https://accounts.spotify.com/api/token', BODY,{headers}).pipe(map((data:any) => {
+      this.token = data.access_token}
+    )).toPromise()
 }
+
 
   getQuery(ruta:string):Observable<any>
   {

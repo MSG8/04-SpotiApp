@@ -22,7 +22,7 @@ import {LoadingComponent} from "./components/shared/loading/loading.component";
     NavbarComponent,
     NoImagePipe,
     TarjetasComponent,
-    LoadingComponent
+    LoadingComponent,
   ],
   imports: [
     HttpClientModule,

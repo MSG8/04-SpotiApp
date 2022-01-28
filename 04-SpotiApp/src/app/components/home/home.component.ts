@@ -18,22 +18,21 @@ export class HomeComponent implements OnInit {
   constructor(private http: HttpClient,private spotifyService: SpotifyService)
   {
     this.getHome();
-
   }
 
-  getHome(){
-    this.spotifyService.getNewtoken()
+ async getHome(){
+    await this.spotifyService.getNewtoken()
     this.spotifyService.getNewReleases()
       .subscribe(data =>
       {
         this.nuevasCanciones = data;
-        this.loading=false;
-      }, (errorServicio) =>
-      {
-        this.error = true;
-        this.loading = false;
-        this.mensajeError = errorServicio.error.error.message;
-      });
+        this.loading=false;}
+        , (errorServicio) =>
+        {
+          this.error = true;
+          this.loading = false;
+          this.mensajeError = errorServicio.error.error.message;
+        });
   }
 
   ngOnInit(): void {
