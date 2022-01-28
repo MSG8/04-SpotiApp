@@ -1,0 +1,10 @@
+<footer class="bg-light text-center text-lg-start" *ngIf="ver">
+  <!-- Copyright -->
+  <button class="btn text-danger float-end " (click)="ver=!ver" >
+    X
+  </button>
+  <div class="text-center pt-1 bg-dark" style="background-color: rgba(0, 0, 0, 0.2);">
+    <audio controls="controls" autoplay src="{{musica}}"></audio>
+  </div>
+  <!-- Copyright -->
+</footer>

@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import {map, Observable} from "rxjs";
+import {EventEmitter, Injectable, Input} from '@angular/core';
+import {map, Observable, Subject} from "rxjs";
 import {HttpClient, HttpHeaders,} from "@angular/common/http";
 
 @Injectable({
@@ -8,9 +8,16 @@ import {HttpClient, HttpHeaders,} from "@angular/common/http";
 export class SpotifyService {
 
   token: string = '';
+  private musica!: URL;
+
+  private emitChangeSource = new Subject<any>();
+  // Observable string streams
+  changeEmitted$ = this.emitChangeSource.asObservable();
+
 
   constructor(private http: HttpClient)
   {
+    this.getNewtoken()
   }
 
   async getNewtoken(){
@@ -64,4 +71,13 @@ export class SpotifyService {
     return this.getQuery(`artists/${id}/top-tracks?country=us`).pipe(map((data: any) => data.tracks));
   }
 
+  musicaFooter(audioUrl:URL)
+  {
+    this.musica=audioUrl;
+  }
+
+  emitChange(change: any)
+  {
+    this.emitChangeSource.next(change);
+  }
 }

@@ -14,6 +14,13 @@ export class ArtistaComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,private spotifyService:SpotifyService)
   {
+    this.inicioAsincrono();
+
+  }
+
+  async inicioAsincrono()
+  {
+    await this.spotifyService.getNewtoken()
     this.activatedRoute.params.subscribe(parametros =>
     {
       this.getArtista(parametros['id']);
@@ -44,4 +51,9 @@ export class ArtistaComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ponerMusica(url_audio:String)
+  {
+    console.log(url_audio)
+    this.spotifyService.emitChange(url_audio);
+  }
 }

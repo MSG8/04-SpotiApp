@@ -18,7 +18,7 @@
         <th>Foto</th>
         <th>Álbum</th>
         <th>Canción</th>
-        <th>Vista Previa</th>
+        <th >Escuchame</th>
       </tr>
       </thead>
       <tbody>
@@ -26,8 +26,9 @@
         <td><img class="img-thumb" [src]="track.album.images | noImage"/></td>
         <td>{{track.album.name}}</td>
         <td>{{track.name}}</td>
-        <td>
-          <audio controls="controls" [src]="track.preview_url"></audio>
+        <td >
+          <button *ngIf="track.preview_url!=null" (click)="ponerMusica(track.preview_url)" type="button" class="btn btn-success">Escuchar</button>
+          <button *ngIf="track.preview_url==null"  type="button" class="btn btn-dark">No music</button>
         </td>
       </tr>
       </tbody>

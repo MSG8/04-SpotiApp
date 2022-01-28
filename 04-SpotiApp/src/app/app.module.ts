@@ -11,6 +11,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { NoImagePipe } from './pipes/no-image.pipe';
 import { TarjetasComponent } from './components/tarjetas/tarjetas.component';
 import {LoadingComponent} from "./components/shared/loading/loading.component";
+import { FooterComponent } from './components/shared/footer/footer.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import {LoadingComponent} from "./components/shared/loading/loading.component";
     NoImagePipe,
     TarjetasComponent,
     LoadingComponent,
+    FooterComponent,
   ],
   imports: [
     HttpClientModule,
