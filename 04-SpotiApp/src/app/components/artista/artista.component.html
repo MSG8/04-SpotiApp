@@ -27,7 +27,7 @@
         <td>{{track.album.name}}</td>
         <td>{{track.name}}</td>
         <td >
-          <button *ngIf="track.preview_url!=null" (click)="ponerMusica(track.preview_url)" type="button" class="btn btn-success">Escuchar</button>
+          <button *ngIf="track.preview_url!=null" (click)="ponerMusica(track)" type="button" class="btn btn-success">Escuchar</button>
           <button *ngIf="track.preview_url==null"  type="button" class="btn btn-dark">No music</button>
         </td>
       </tr>

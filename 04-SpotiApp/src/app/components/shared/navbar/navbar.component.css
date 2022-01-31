@@ -1,0 +1,13 @@
+#boton {
+  background-color: transparent;
+  color: #198754!important;
+  border: 2px solid #198754;
+  border-radius: 7px;
+  margin-right: 2%;
+}
+
+#boton:hover {
+  background-color: #198754!important;
+  color: white!important;
+  text-decoration: none;
+}

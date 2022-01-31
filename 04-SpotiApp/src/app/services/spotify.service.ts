@@ -8,7 +8,7 @@ import {HttpClient, HttpHeaders,} from "@angular/common/http";
 export class SpotifyService {
 
   token: string = '';
-  private musica!: URL;
+  private track!: any;
 
   private emitChangeSource = new Subject<any>();
   // Observable string streams
@@ -71,9 +71,9 @@ export class SpotifyService {
     return this.getQuery(`artists/${id}/top-tracks?country=us`).pipe(map((data: any) => data.tracks));
   }
 
-  musicaFooter(audioUrl:URL)
+  musicaFooter(track:any)
   {
-    this.musica=audioUrl;
+    this.track=track;
   }
 
   emitChange(change: any)

@@ -1,7 +1,7 @@
-<div class="card-group">
+<div class="w-100 card-group justify-content-center">
   <div class="card col-4 puntero mx-3 my-2"  *ngFor="let item of items"  (click)="verArtista(item)" >
     <img src="{{item.images | noImage }}" class="card-img-top" alt="...">
-    <div class="card-body">
+    <div class="card-body ">
       <h5 class="card-title">{{item.name}}</h5>
       <p class="card-text"> <span *ngFor="let artista of item.artists" class="badge bg-success">{{artista.name}}</span></p>
       <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>

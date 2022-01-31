@@ -1,10 +1,44 @@
-<footer class="bg-light text-center text-lg-start" *ngIf="ver">
-  <!-- Copyright -->
-  <button class="btn text-danger float-end " (click)="ver=!ver" >
+<footer class="fonodoReproductor text-center text-lg-start" *ngIf="ver">
+  <button class="btn text-danger float-end fonodoReproductor" (click)="ocultar()" >
     X
   </button>
-  <div class="text-center pt-1 bg-dark" style="background-color: rgba(0, 0, 0, 0.2);">
-    <audio controls="controls" autoplay src="{{musica}}"></audio>
+  <div class="music-player">
+    <div class="song-bar">
+      <div class="song-infos">
+        <div class="image-container">
+          <img [src]="track.album.images | noImage" alt="" />
+        </div>
+        <div class="song-description">
+          <p class="title">
+            {{track.name}}
+          </p>
+          <p class="artist">{{track.artists[0].name}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="progress-controller">
+      <div class="control-buttons">
+        <i class="play-pause fas fa-play" *ngIf="!musicaActiva" (click)="cambio()"></i>
+        <i class="play-pause fas fa-pause" *ngIf="musicaActiva" (click)="cambio()"></i>
+        <i class="fas fa-undo-alt" id="botonLoop" (click)="auto()"></i>
+      </div>
+      <div class="progress-container">
+        <span>{{this.progresoAudio*1000 | date:  'mm:ss'  }}</span>
+        <div class="progress-bar" id="barra-musica">
+          <div class="progress" id="progreso-barra-musica"></div>
+        </div>
+        <span>{{this.audio.duration*1000 | date:  'mm:ss'  }}</span>
+      </div>
+    </div>
+    <div class="other-features">
+      <i class="fas fa-list-ul"></i>
+      <i class="fas fa-desktop"></i>
+      <div class="volume-bar">
+        <i class="fas fa-volume-down"></i>
+        <div class="progress-bar">
+          <div class="progress"></div>
+        </div>
+      </div>
+    </div>
   </div>
-  <!-- Copyright -->
 </footer>

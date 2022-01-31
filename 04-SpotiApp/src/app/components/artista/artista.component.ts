@@ -51,9 +51,9 @@ export class ArtistaComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  ponerMusica(url_audio:String)
+  ponerMusica(track:any)
   {
-    console.log(url_audio)
-    this.spotifyService.emitChange(url_audio);
+    console.log(track)
+    this.spotifyService.emitChange(track);
   }
 }
