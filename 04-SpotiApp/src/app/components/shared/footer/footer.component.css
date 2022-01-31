@@ -85,12 +85,12 @@ i:hover{
 }
 .control-buttons{
   display: flex;
-  align-items: center;
-  gap: 2em;
+  justify-content: center;
 }
 .play-pause{
   display: inline-block;
   padding: 1em;
+  margin-left: 1em;
   background-color: var(--primary-color);
   color: #111;
   border-radius: 50%;
@@ -150,4 +150,9 @@ i:hover{
 }
 .volume-bar .progress-bar:hover .progress::after{
   --size: .8em;
+}
+.progress-audio
+{
+  background-color: var(--secondary-color) !important;
+  color: var(--primary-color) !important;
 }

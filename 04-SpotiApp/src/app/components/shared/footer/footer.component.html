@@ -1,6 +1,6 @@
 <footer class="fonodoReproductor text-center text-lg-start" *ngIf="ver">
   <button class="btn text-danger float-end fonodoReproductor" (click)="ocultar()" >
-    X
+    ❌
   </button>
   <div class="music-player">
     <div class="song-bar">
@@ -18,25 +18,23 @@
     </div>
     <div class="progress-controller">
       <div class="control-buttons">
-        <i class="play-pause fas fa-play" *ngIf="!musicaActiva" (click)="cambio()"></i>
-        <i class="play-pause fas fa-pause" *ngIf="musicaActiva" (click)="cambio()"></i>
+        <i class="play-pause fas fa-play" *ngIf="!musicaActiva" (click)="cambioPlay()"></i>
+        <i class="play-pause fas fa-pause" *ngIf="musicaActiva" (click)="cambioPlay()"></i>
         <i class="fas fa-undo-alt" id="botonLoop" (click)="auto()"></i>
       </div>
       <div class="progress-container">
         <span>{{this.progresoAudio*1000 | date:  'mm:ss'  }}</span>
-        <div class="progress-bar" id="barra-musica">
-          <div class="progress" id="progreso-barra-musica"></div>
+        <div class="progress-bar">
+          <input id="rangoVolumenDos" min="0" max="{{this.audio.duration}}" type="range" (input)="cambiarMusica()" class="w-100 progress-audio">
         </div>
         <span>{{this.audio.duration*1000 | date:  'mm:ss'  }}</span>
       </div>
     </div>
     <div class="other-features">
-      <i class="fas fa-list-ul"></i>
-      <i class="fas fa-desktop"></i>
       <div class="volume-bar">
-        <i class="fas fa-volume-down"></i>
+        <i class="fas fa-volume-down active" #volumenIcono (click)="mutear(volumenIcono)"></i>
         <div class="progress-bar">
-          <input  type="range" min="0" max="100" #rangeVolumen  (change)="cambiarVolumen(rangeVolumen.value)" class="w-100 progress">
+          <input  type="range" min="0" max="100" #rangeVolumen  (input)="cambiarVolumen(rangeVolumen.value,volumenIcono)" class="w-100 progress">
         </div>
       </div>
     </div>
