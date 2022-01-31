@@ -36,7 +36,7 @@
       <div class="volume-bar">
         <i class="fas fa-volume-down"></i>
         <div class="progress-bar">
-          <div class="progress"></div>
+          <input  type="range" min="0" max="100" #rangeVolumen  (change)="cambiarVolumen(rangeVolumen.value)" class="w-100 progress">
         </div>
       </div>
     </div>

@@ -13,6 +13,8 @@ export class FooterComponent implements OnInit {
   musicaActiva=false;
   audio=new Audio();
   progresoAudio:number=0;
+  volumen:number=5;
+
 
   constructor(private spotifyService:SpotifyService)
   {
@@ -61,5 +63,11 @@ export class FooterComponent implements OnInit {
     let barLength = timerWrapper.clientWidth * (this.audio.currentTime/this.audio.duration);
     timerBar.style.width = barLength + 'px';
   }
+
+  cambiarVolumen(volumenString:string){
+    let volumen:number = parseInt(volumenString)
+    this.audio.volume = volumen*0.01;
+  }
+
 
 }
