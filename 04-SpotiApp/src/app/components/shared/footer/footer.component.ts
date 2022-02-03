@@ -27,8 +27,6 @@ export class FooterComponent implements OnInit {
       this.audio.autoplay=true;
       this.audio.ontimeupdate=this.cambioTiempo.bind(this);
       this.musicaActiva=true;
-      let rango:any = document.getElementById("rangeMusica");
-      rango.value=0;
     });
   }
 

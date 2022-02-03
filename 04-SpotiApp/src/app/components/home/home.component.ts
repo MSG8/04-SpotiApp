@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {SpotifyService} from "../../services/spotify.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-home',
@@ -27,12 +28,36 @@ export class HomeComponent implements OnInit {
       {
         this.nuevasCanciones = data;
         this.loading=false;}
-        , (errorServicio) =>
+        , async (errorServicio) =>
         {
           this.error = true;
           this.loading = false;
-          this.mensajeError = errorServicio.error.error.message;
+          await this.errorPersonalizado(errorServicio.error.error.status)
         });
+  }
+
+  errorPersonalizado(status:number)
+  {
+    switch (status) {
+      case 400:
+        this.mensajeError = "Error en la llamada http";
+        break;
+      case 403:
+        this.mensajeError = "Acceso prohibido";
+        break;
+      case 404:
+        this.mensajeError = "Respuesta no encontrada";
+        break;
+      case 500:
+        this.mensajeError = "Condicion inesperada";
+        break;
+      case 503:
+        this.mensajeError = "Servidor caido, intente mas tarde";
+        break;
+      default:
+        this.mensajeError = "Error no clasificado, contactenos en: ejemplo@gmail.com";
+        break;
+    }
   }
 
   ngOnInit(): void {

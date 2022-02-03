@@ -151,8 +151,4 @@ i:hover{
 .volume-bar .progress-bar:hover .progress::after{
   --size: .8em;
 }
-.progress-audio
-{
-  background-color: var(--secondary-color) !important;
-  color: var(--primary-color) !important;
-}
+

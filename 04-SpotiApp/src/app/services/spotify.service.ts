@@ -8,11 +8,9 @@ import {HttpClient, HttpHeaders,} from "@angular/common/http";
 export class SpotifyService {
 
   token: string = '';
-  private track!: any;
 
   private emitChangeSource = new Subject<any>();
-  // Observable string streams
-  changeEmitted$ = this.emitChangeSource.asObservable();
+  changeEmitted$ = this.emitChangeSource.asObservable(); //lo cambiamos a un observable
 
 
   constructor(private http: HttpClient)
@@ -36,7 +34,7 @@ export class SpotifyService {
     )).toPromise()
 }
 
-
+  // Metodo encargado de llamar a la api con GET y introducir el link deseado
   getQuery(ruta:string):Observable<any>
   {
     const headers = new HttpHeaders(
@@ -65,17 +63,12 @@ export class SpotifyService {
     return this.getQuery(`artists/${id}`)
   }
 
-
   getTopTracks(id:string)
   {
     return this.getQuery(`artists/${id}/top-tracks?country=us`).pipe(map((data: any) => data.tracks));
   }
 
-  musicaFooter(track:any)
-  {
-    this.track=track;
-  }
-
+  //emite el cambio apara que lo reciba el footer
   emitChange(change: any)
   {
     this.emitChangeSource.next(change);
