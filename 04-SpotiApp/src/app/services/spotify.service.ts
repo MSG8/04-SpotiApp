@@ -18,7 +18,24 @@ export class SpotifyService {
     this.getNewtoken()
   }
 
-  async getNewtoken(){
+  getCookie(cname:string) {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0)==' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length,c.length);
+      }
+    }
+    return "";
+  }
+
+  getNewtoken(){
+
+
     const BODY = new URLSearchParams();
     BODY.set('grant_type','client_credentials')
     BODY.set('client_id','3db4618e13964db19ef70097d113b732')
@@ -30,7 +47,17 @@ export class SpotifyService {
       }
     );
     return this.http.post('https://accounts.spotify.com/api/token', BODY,{headers}).pipe(map((data:any) => {
-      this.token = data.access_token}
+      if (this.getCookie("token")=="")
+      {
+        let fecha = new Date();
+        fecha.setDate(fecha.getDate());
+        document.cookie = 'token='+data.access_token+';expires='+fecha;
+      }
+      else
+      {
+        console.log(this.getCookie("token"))
+      }
+    }
     )).toPromise()
 }
 
@@ -39,11 +66,12 @@ export class SpotifyService {
   {
     const headers = new HttpHeaders(
       {
-      'Authorization':'Bearer ' +this.token
+      'Authorization':'Bearer '+this.getCookie("token")
       });
 
     const API = "https://api.spotify.com/v1/"
 
+    console.log(API+ruta,{headers})
     return this.http.get(API+ruta,{headers})
   }
 
@@ -52,10 +80,10 @@ export class SpotifyService {
    return this.getQuery("browse/new-releases").pipe(map((data:any) => data.albums.items))
   }
 
-  getArtist(busqueda:string){
+  getArtist(busqueda:string,tipo:string)
+  {
 
-    return this.getQuery(`search?q=${busqueda}&type=artist&limit=15`).pipe(map((data:any)=>data.artists.items))
-
+    return this.getQuery(`search?q=${busqueda}&type=${tipo}`).pipe(map((data:any)=>data[tipo+"s"].items))
   }
 
   getArtistaId(id:string):Observable<any>

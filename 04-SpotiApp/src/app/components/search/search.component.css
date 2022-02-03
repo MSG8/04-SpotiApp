@@ -1,0 +1,17 @@
+.busqueda
+{
+  display: flex;
+  margin-bottom: 30px;
+}
+.busqueda select
+{
+  width: 15%;
+}
+.busqueda img
+{
+  background-color: #198754;
+  width: 3%;
+  margin: 0 5px;
+  padding: 1%;
+  border-radius: 5px;
+}
